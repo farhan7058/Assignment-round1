@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BOGO Offer</title>
+  <style>
+    body {
+     
+
+      background-color: #f7f7f7;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .container {
+     width: 300px;
+      margin:auto;
+      padding: 20px;
+      border: 1px solid #fbf5f5;
+      border-radius: 5px;
+      background-color: white;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      
+    }
+    h2 {
+      text-align: center;
+      color: #ff4081;
+    }
+    .offer {
+      border: 1px solid #ff4081;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border-color: #8d8b8b;
+    }
+    .offer h3 {
+      margin: 0;
+      color: #ff4081;
+    }
+    .price {
+      text-align: right;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .discount {
+      color: #f6e3e9;
+      background-color: #ff4081;
+    }
+    .dropdown {
+      display: none;
+      margin-top: 10px;
+    }
+    .dropdown select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+    .total {
+      text-align: right;
+      font-size: 18px;
+      font-weight: bold
+    }
+    .add-to-cart {
+      width: 100%;
+      padding: 10px;
+      background-color: #ff4081;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .offer:hover{
+           background-color: #f7f4f2;
+           border-color: #ff4081;
+    }
+    .delivery {
+        display: flex;
+        justify-content: space-between;
+        margin: 15px 0;
+        color: #e46975;
+        font-weight: bold;
+    }
+    .old-price {
+        text-decoration: line-through;
+        color: gray;
+    }
+  
+    .most-popular {
+        /*position: sticky;*/
+       
+        padding-bottom: 50px;
+        background-color:  #ff4081;
+        color: white;
+        padding: 2px 8px;
+        font-size: 15px;
+        border-radius: 12px;
+       
+    }
+    .size{
+        font-weight: bold;
+    }
+    .color{font-weight: bold}
+    
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>YAY! It's BOGO</h2>
+  
+  <div class="offer">
+    <label>
+      <input type="radio" name="offer" value="1" onclick="toggleDropdown(1)">
+      1 Unit <span class="discount">10% Off</span>  <span class="old-price">$24.00 USD</span>
+      <div class="price">$10.00 USD</div>
+    </label>
+    <div id="dropdown-1" class="dropdown">
+        <span class="size">Size</span>
+        <br>
+        <span>#1</span>
+      <select name="size1">
+      <option value="S">Small</option>
+        <option value="M">Medium</option>
+        <option value="L">Large</option>
+      </select>
+      <span class="color">Color</span>
+      <br>
+        <span>#2</span>
+      <select name="color1">
+        <option value="black">Black</option>
+        <option value="red">Red</option>
+        <option value="blue">Blue</option>
+      </select>
+     
+    </div>
+  </div>
+  <span class="most-popular">Most Popular</span>
+  <div class="offer">
+    <label>
+       
+      <input type="radio" name="offer" value="2" onclick="toggleDropdown(2)">
+      2 Units <span class="discount">20% Off</span>   <span class="old-price">$30.00 USD</span>
+      <div class="price">$18.00 USD</div>
+    </label>
+    <div id="dropdown-2" class="dropdown">
+        <span class="size">Size</span>
+        <br>
+        <span>#1</span>
+      <select name="size1">
+        <option value="S">Small</option>
+        <option value="M">Medium</option>
+        <option value="L">Large</option>
+      </select>
+      <span class="color">Color</span>
+      <br>
+        <span>#2</span>
+      <select name="color1">
+        <option value="black">Black</option>
+        <option value="red">Red</option>
+        <option value="blue">Blue</option>
+      </select>
+     
+    </div>
+  </div>
+
+  <div class="offer">
+    <label>
+      <input type="radio" name="offer" value="3" onclick="toggleDropdown(3)">
+      3 Units <span class="discount">30% Off</span>  <span class="old-price">$40.00 USD</span>
+      <div class="price">$24.00 USD</div>
+    </label>
+    <div id="dropdown-3" class="dropdown">
+        <span class="size">Size</span>
+        <br>
+        <span>#1</span>
+      <select name="size1">
+        <option value="S">Small</option>
+        <option value="M">Medium</option>
+        <option value="L">Large</option>
+      </select>
+      <span class="color">Color</span>
+      <br>
+        <span>#2</span>
+      <select name="color1">
+        <option value="black">Black</option>
+        <option value="red">Red</option>
+        <option value="blue">Blue</option>
+      </select>
+     
+    </div>
+  </div>
+  
+  <span class="delivery">Free Delivery</span>
+  <div class="total">
+    Total: <span id="total-price">$0.00 USD</span>
+  </div>
+
+  <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+</div>
+
+<script>
+  function toggleDropdown(value) {
+    // Hide all dropdowns
+    document.querySelectorAll('.dropdown').forEach(drop => drop.style.display = 'none');
+    
+    // Show the selected dropdown
+     if(value==1){
+        document.getElementById('dropdown-1').style.display = 'block';
+        }
+
+      else if (value == 2) {
+      document.getElementById('dropdown-2').style.display = 'block';
+    }
+     else if(value==3){
+        document.getElementById('dropdown-3').style.display = 'block';
+     }
+   
+
+    // Update total price
+    let price = 0;
+    switch (value) {
+      case 1: price = 10; break;
+      case 2: price = 18; break;
+      case 3: price = 24; break;
+    }
+    document.getElementById('total-price').innerText = `$${price}.00 USD`;
+  }
+
+  function addToCart() {
+    alert('Items added to cart');
+  }
+</script>
+
+</body>
+</html>
